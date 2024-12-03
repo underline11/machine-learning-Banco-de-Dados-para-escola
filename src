@@ -1,0 +1,24 @@
+create database escola;
+USE escola;
+create table turmas (
+id_estudante int auto_increment primary key,
+nome int not null,
+data_nascimento int not null,
+turma int not null
+);
+create table professores (
+id_professor int auto_increment primary key,
+nome int not null,
+disciplina int not null
+);
+create table alunos (
+id_turma int auto_increment primary key,
+nome_turma int not null,
+id_professor int not null
+);
+create table notas (
+id_nota int auto_increment primary key,
+id_estudante int not null,
+id_turma int not null,
+nota int not null
+);
