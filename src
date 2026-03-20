@@ -1,24 +1,32 @@
-create database escola;
+CREATE DATABASE escola;
 USE escola;
-create table turmas (
-id_estudante int auto_increment primary key,
-nome int not null,
-data_nascimento int not null,
-turma int not null
+
+CREATE TABLE professores (
+    id_professor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    disciplina VARCHAR(50) NOT NULL
 );
-create table professores (
-id_professor int auto_increment primary key,
-nome int not null,
-disciplina int not null
+
+CREATE TABLE turmas (
+    id_turma INT AUTO_INCREMENT PRIMARY KEY,
+    nome_turma VARCHAR(20) NOT NULL,
+    id_professor INT NOT NULL,
+    FOREIGN KEY (id_professor) REFERENCES professores(id_professor)
 );
-create table alunos (
-id_turma int auto_increment primary key,
-nome_turma int not null,
-id_professor int not null
+
+CREATE TABLE alunos (
+    id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    id_turma INT NOT NULL,
+    FOREIGN KEY (id_turma) REFERENCES turmas(id_turma)
 );
-create table notas (
-id_nota int auto_increment primary key,
-id_estudante int not null,
-id_turma int not null,
-nota int not null
+
+CREATE TABLE notas (
+    id_nota INT AUTO_INCREMENT PRIMARY KEY,
+    id_aluno INT NOT NULL,
+    id_turma INT NOT NULL,
+    valor_nota DECIMAL(4, 2) NOT NULL,
+    FOREIGN KEY (id_aluno) REFERENCES alunos(id_aluno),
+    FOREIGN KEY (id_turma) REFERENCES turmas(id_turma)
 );
